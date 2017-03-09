@@ -135,10 +135,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void deleteDBAPI() {
+        SQLiteDatabase db = mMySqliteHelper.getWritableDatabase();
+        int delete = db.delete(Constant.TABLE_NAME, Constant._ID + ">?", new String[]{"4"});
+        if(delete > 0){
+            System.out.println("-----删除数据成功-----");
+            System.out.println("delete count = "+delete);
+        }else{
+            System.out.println("-----删除数据失败-----");
+        }
+
+        db.close();
     }
 
     private void updateDBAPI() {
+        SQLiteDatabase db = mMySqliteHelper.getWritableDatabase();
 
+        ContentValues cv = new ContentValues();
+        cv.put(Constant.NAME,"木之本樱");
+//        db.update(Constant.TABLE_NAME,cv,Constant._ID+"=3",null);
+        int update = db.update(Constant.TABLE_NAME, cv, Constant._ID + "=?", new String[]{"3"});
+        System.out.println("-----修改数据成功-----");
+        System.out.println("update value = "+update);
+        db.close();
     }
 
     private void queryDBAPI() {
