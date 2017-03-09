@@ -40,6 +40,8 @@ public class MySqliteHelper extends SQLiteOpenHelper {
         System.out.println("---onCreate---");
         String sql = "create table "+Constant.TABLE_NAME+"("+Constant._ID+" Integer primary key,"
                 +Constant.NAME+" varchar(10),"+Constant.AGE+" Integer)";
+
+        sqLiteDatabase.execSQL(sql);//执行sql语句
     }
 
     /**

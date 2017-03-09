@@ -1,6 +1,7 @@
 package com.giousa.sqlitedemo.utils;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.giousa.sqlitedemo.sql.MySqliteHelper;
 
@@ -19,5 +20,17 @@ public class DBManager {
             mySqliteHelper = new MySqliteHelper(context);
         }
         return mySqliteHelper;
+    }
+
+
+    public static void execSQL(SQLiteDatabase db,String sql){
+
+        if(db != null){
+            if(sql != null && !"".equals(sql)){
+                db.execSQL(sql);
+            }
+
+        }
+
     }
 }
