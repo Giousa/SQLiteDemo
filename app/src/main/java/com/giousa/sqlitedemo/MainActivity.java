@@ -111,7 +111,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void queryDB() {
+        SQLiteDatabase db = mMySqliteHelper.getWritableDatabase();
 
+        String sql = "select * from "+Constant.TABLE_NAME;
+        Cursor cursor = DBManager.selectBySQL(db, sql, null);
+        while (cursor.moveToNext()){
+            String name = cursor.getString(cursor.getColumnIndex(Constant.NAME));
+            System.out.println("查询数据成功  name = "+name);
+        }
+
+        db.close();
     }
 
     //-------通过API对数据进行增删改查-------

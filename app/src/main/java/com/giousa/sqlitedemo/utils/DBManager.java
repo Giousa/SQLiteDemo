@@ -1,6 +1,7 @@
 package com.giousa.sqlitedemo.utils;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.giousa.sqlitedemo.sql.MySqliteHelper;
@@ -32,5 +33,13 @@ public class DBManager {
 
         }
 
+    }
+
+    public static Cursor selectBySQL(SQLiteDatabase db,String sql,String[] args){
+        Cursor cursor = null;
+        if(db != null){
+            cursor = db.rawQuery(sql,args);
+        }
+        return cursor;
     }
 }
