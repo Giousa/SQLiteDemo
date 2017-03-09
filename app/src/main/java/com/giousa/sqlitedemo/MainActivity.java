@@ -1,6 +1,7 @@
 package com.giousa.sqlitedemo;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -160,7 +161,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void queryDBAPI() {
+        SQLiteDatabase db = mMySqliteHelper.getWritableDatabase();
 
+        Cursor cursor = db.query(Constant.TABLE_NAME, null, Constant._ID + ">?", new String[]{"0"}, null, null, null);
+        //mCursor.getString(mCursor.getColumnIndex(NotesDB.CONTENT))
+
+        while (cursor.moveToNext()){
+            int columnIndex = cursor.getColumnIndex(Constant.NAME);
+            String name = cursor.getString(columnIndex);
+            System.out.println("columnIndex = " + columnIndex + "  name = "+name);
+        }
+
+        db.close();
     }
 
 
